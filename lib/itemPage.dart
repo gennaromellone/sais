@@ -46,10 +46,7 @@ class ItemPageState extends State<ItemPage>{
               widget.item.name!,
               style: TextStyle(color: Colors.white, fontSize: 16.0),
             ),
-            Text(
-              widget.item.area!,
-              style: TextStyle(color: Colors.white, fontSize: 14.0),
-            )
+
           ],
         ),
         actions: <Widget>[new Icon(Icons.more_vert)],
@@ -94,7 +91,7 @@ class ItemPageState extends State<ItemPage>{
               child:  ListView.builder(
               itemCount: widget.item.status!.length,
               itemBuilder: (BuildContext context, int index) {
-                var it = widget.item.status![index];
+                var it = widget.item.status![index].index;
                 return SizedBox(
                   height: 35,
                   child: Card(
@@ -105,8 +102,8 @@ class ItemPageState extends State<ItemPage>{
                       child: Row(
                           children: [
                             Expanded(flex:3, child: Image(image: AssetImage('resources/status/'+ it.toString() +'.png'),height: 20,)),
-                            Expanded(flex: 7,child: Text("18 Nov 00:00 UTC")),
-                            Expanded(flex:10,child: Text(status_label[it]))
+                            Expanded(flex: 7,child: Text(widget.item.status![index].dateTime!.toString())),
+                            Expanded(flex:10,child: Text(status_label[it!]))
 
 
                           ]

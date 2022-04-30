@@ -56,8 +56,7 @@ dev_dependencies:
 # The following section is specific to Flutter.
 flutter:
   assets:
-    - resources/logo_mytiluse.png
-    - resources/logo_mytiluse2.png
+    - resources/saisLogo.png
     - resources/arrow/
     - resources/status/
     - resources/colorbar/

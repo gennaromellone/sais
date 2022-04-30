@@ -103,7 +103,7 @@ class _MyAppState extends State<MyApp> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          const Image(image: AssetImage('resources/logo_mytiluse.png')),
+                          const Image(image: AssetImage('resources/saisLogo.png')),
                           Text(message),
                           Container(
                             margin: const EdgeInsets.only(top: 10.0),

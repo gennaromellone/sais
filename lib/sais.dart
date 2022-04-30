@@ -74,28 +74,7 @@ class _SaisState extends State<Sais>{
           child: Column(mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Expanded(
-                    flex: 1,
-                    child: DateTimePicker(
-                      type: DateTimePickerType.dateTimeSeparate,
-                      dateMask: 'd MMM, yyyy',
-                      initialValue: DateTime.now().toString(),
-                      firstDate: DateTime(2000),
-                      lastDate: DateTime(2100),
-                      icon: const Icon(Icons.event),
-                      dateLabelText: 'Date',
-                      timeLabelText: "Hour",
-                      onChanged: (val) => {
-                        _handleRefresh(val),
-                      },
-                      validator: (val) {
-                        return null;
-                      },
-                      onSaved: (val) => {
-                        _handleRefresh(val),
-                      },
-                    )
-                ),
+
                 Expanded(
                   flex: 10,
                   child: Center( child: _widgetOptions.elementAt(0),),
