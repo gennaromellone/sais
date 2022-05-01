@@ -37,7 +37,7 @@ Future<List> getItems(bool isLogged, String date, locations) async {
 
     var features = data['sam3']['features'];
     for (int i=0; i < features.length; i++){
-      var id = features[i]['properties']['id'];
+      var id = int.parse(features[i]['properties']['id']);
       var lat = features[i]['geometry']['coordinates'][1];
       var lon = features[i]['geometry']['coordinates'][0];
       var name = features[i]['properties']['name'];

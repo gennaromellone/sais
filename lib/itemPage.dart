@@ -36,7 +36,7 @@ class ItemPageState extends State<ItemPage>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: new AppBar(
+      appBar: AppBar(
         backgroundColor: Color.fromRGBO(0, 96, 160, 1.0),
         title: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -44,12 +44,12 @@ class ItemPageState extends State<ItemPage>{
           children: [
             Text(
               widget.item.name!,
-              style: TextStyle(color: Colors.white, fontSize: 16.0),
+              style: const TextStyle(color: Colors.white, fontSize: 16.0),
             ),
 
           ],
         ),
-        actions: <Widget>[new Icon(Icons.more_vert)],
+        actions: const <Widget>[Icon(Icons.more_vert)],
       ),
 
 
