@@ -4,11 +4,11 @@ import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 
 import 'itemPage.dart';
-//import 'package:mytiluse/itemPage.dart';
 
 const String apiBase= 'https://api.meteo.uniparthenope.it';
-const List<String> status_label = ['Dato non disponibile', 'Rischio nullo', 'Rischio basso', 'Rischio medio', 'Rischio elevato'];
-//const List<String> locations = ["VET0130", "VET0020", "VET0021", "VET0072", "VET0071", "VET0100", "VET0062", "VET0150", "VET0055", "VET0054", "VET0056", "VET0051", "VET0050", "VET0053", "VET0052", "VET0121", "VET0123", "VET0122", "VET0125", "VET0124", "VET0000", "VET0031", "VET0030", "VET0140", "VET0061", "VET0063", "VET0064", "VET0110", "VET0010", "VET0160", "VET0057", "VET0042", "VET0041"];
+//const List<String> status_label = ['Dato non disponibile', 'Rischio nullo', 'Rischio basso', 'Rischio medio', 'Rischio elevato'];
+const List<String> status_label = ['Very Low', 'Low', 'Medium', 'High', 'Very High'];
+
 
 class Sais{
   String? dateTime;
@@ -19,18 +19,25 @@ class Sais{
 class Rows {
   int? id;
   String? name;
+  String? area;
   double? lat;
   double? lon;
   List<Sais>? status;
 
-  Rows({this.id, this.name, this.lat, this.lon, this.status});
+  Rows({this.id, this.name, this.area , this.lat, this.lon, this.status});
+}
+String convertDatetime(date){
+
+  DateTime dt = DateTime.parse(date.replaceAll("Z", " "));
+  String dateFormat = DateFormat('EEEE dd-MM-yyyy hh:mm').format(dt);
+
+  return dateFormat + " UTC";
 }
 
-
-
-Future<List> getItems(bool isLogged, String date, locations) async {
+Future<List> getItems() async {
   List<Rows> list = <Rows>[];
   final response = await http.get(Uri.parse(apiBase + "/apps/sais/index"));
+  print(response.statusCode);
   if (response.statusCode == 200) {
 
     var data = jsonDecode(response.body);
@@ -41,20 +48,23 @@ Future<List> getItems(bool isLogged, String date, locations) async {
       var lat = features[i]['geometry']['coordinates'][1];
       var lon = features[i]['geometry']['coordinates'][0];
       var name = features[i]['properties']['name'];
-      //var area = 'Bagnoli/Pozzuoli';
+      var area = features[i]['properties']['area'];
       var alert_status = features[i]['properties']['sais'];
       List<Sais> alerts = <Sais>[];
       for(var x=0; x < alert_status.length; x++){
-        alerts.add(Sais(dateTime: alert_status[x]['dateTime'], index: alert_status[x]['index']));
+        alerts.add(Sais(dateTime: convertDatetime(alert_status[x]['dateTime']) , index: alert_status[x]['index']));
       }
-
-      var item = Rows(id: id, name:name, lat:lat, lon: lon, status: alerts);
+      var item = Rows(id: id, name:name, area:area ?? '', lat:lat, lon: lon, status: alerts);
       //var item = Row(id: id, name: name, area: scs, status: status);
-      print(item);
       list.add(item);
     }
-  }
 
+  }
+  else{
+
+    print("ERROR");
+  }
+  list.sort((a, b) => a.name!.compareTo(b.name!));
   return list;
 }
 
@@ -75,12 +85,11 @@ class _ListLayoutState extends State<ListLayout> {
 
   @override
   Widget build(BuildContext context) {
-    var date = formatData(widget.date);
-    var locations = widget.locations;
+
     return Scaffold(
         body: Center(
           child: FutureBuilder(
-              future: getItems(true, date, locations),
+              future: getItems(),
               builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
                 if (snapshot.hasData){
                   var items = snapshot.data;
@@ -92,11 +101,11 @@ class _ListLayoutState extends State<ListLayout> {
                           onTap: (){
                             Navigator.push(
                              context,
-                              MaterialPageRoute(builder: (context) => ItemPage(item: item, date: date)),
+                              MaterialPageRoute(builder: (context) => ItemPage(item: item)),
                             );
                           },
                           title: Text(item.name),
-                          subtitle: Text(item.name),
+                          subtitle: Text(item.area),
                           //leading: Image(image: AssetImage('resources/status/' + item.status[0].index.toString() + '.png'),height: 50,),
                         ),
                       );
@@ -122,4 +131,6 @@ class _ListLayoutState extends State<ListLayout> {
 
     return formattedDate;
   }
+
+
 }

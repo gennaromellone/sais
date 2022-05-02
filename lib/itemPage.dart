@@ -7,9 +7,8 @@ import 'itemsList.dart';
 
 class ItemPage extends StatefulWidget{
   final Rows item;
-  final String date;
 
-  const ItemPage({required this.item, required this.date});
+  const ItemPage({required this.item});
 
   @override
   ItemPageState createState() => ItemPageState();
@@ -46,6 +45,10 @@ class ItemPageState extends State<ItemPage>{
               widget.item.name!,
               style: const TextStyle(color: Colors.white, fontSize: 16.0),
             ),
+            Text(
+              widget.item.area!,
+              style: const TextStyle(color: Colors.white, fontSize: 14.0),
+            ),
 
           ],
         ),
@@ -62,7 +65,7 @@ class ItemPageState extends State<ItemPage>{
                 FlutterMap(
                   options: MapOptions(
                     center: LatLng(widget.item.lat!, widget.item.lon!),
-                    zoom: 13.0,
+                    zoom: 15.0,
                   ),
                   layers: [
                     TileLayerOptions(
@@ -75,8 +78,8 @@ class ItemPageState extends State<ItemPage>{
                     MarkerLayerOptions(
                       markers: [
                         Marker(
-                          width: 30.0,
-                          height: 30.0,
+                          width: 60.0,
+                          height: 60.0,
                           point: LatLng(widget.item.lat!, widget.item.lon!),
                           builder: (ctx) =>
                               Icon(Icons.pin_drop)
@@ -104,8 +107,6 @@ class ItemPageState extends State<ItemPage>{
                             Expanded(flex:3, child: Image(image: AssetImage('resources/status/'+ it.toString() +'.png'),height: 20,)),
                             Expanded(flex: 7,child: Text(widget.item.status![index].dateTime!.toString())),
                             Expanded(flex:10,child: Text(status_label[it!]))
-
-
                           ]
                       ),
                     ),

@@ -92,51 +92,82 @@ class _SaisState extends State<Sais>{
                       ),
                         Padding(
                           padding: const EdgeInsets.all(2.0),
-                          child: Row (
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Image.asset('resources/status/0.png',height: 15,),
-                              SizedBox(width: 25),
-                              Text("Dato non disponibile", style: TextStyle(
-                                  fontSize: 12.0
-                              )),
-                              SizedBox(width: 50,),
-                              Image.asset('resources/status/3.png',height: 15,),
-                              SizedBox(width: 25),
-                              Text("Rischio medio", style: TextStyle(
-                                  fontSize: 12.0
-                              ))
-                          ]),
+                          child: Expanded(
+                            child: Row (
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Expanded(
+                                    child:
+                                Row(children: [
+                                  Image.asset('resources/status/0.png',height: 15,),
+                                  SizedBox(width: 25),
+                                  Text(status_label[0], style: TextStyle(
+                                      fontSize: 12.0
+                                  )),
+                                ],)
+                                ),
+                                Expanded(
+                                    child:
+                                    Row(children: [
+                                      Image.asset('resources/status/3.png',height: 15,),
+                                      SizedBox(width: 25),
+                                      Text(status_label[3], style: TextStyle(
+                                          fontSize: 12.0
+                                      )),
+                                    ],)
+                                ),
+
+                              ]),
+                          ),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(2.0),
-                          child: Row (
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Image.asset('resources/status/1.png',height: 15,),
-                                SizedBox(width: 25),
-                                Text("Rischio nullo", style: TextStyle(
-                                    fontSize: 12.0
-                                )),
-                                SizedBox(width: 50,),
-                                Image.asset('resources/status/4.png',height: 15,),
-                                SizedBox(width: 25),
-                                Text("Rischio elevato", style: TextStyle(
-                                    fontSize: 12.0
-                                ))
-                              ]),
+                          child: Expanded(
+                            child: Row (
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Expanded(
+                                      child:
+                                      Row(children: [
+                                        Image.asset('resources/status/1.png',height: 15,),
+                                        SizedBox(width: 25),
+                                        Text(status_label[1], style: TextStyle(
+                                            fontSize: 12.0
+                                        )),
+                                      ],)
+                                  ),
+                                  Expanded(
+                                      child:
+                                      Row(children: [
+                                        Image.asset('resources/status/4.png',height: 15,),
+                                        SizedBox(width: 25),
+                                        Text(status_label[4], style: TextStyle(
+                                            fontSize: 12.0
+                                        )),
+                                      ],)
+                                  ),
+
+                                ]),
+                          ),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(2.0),
-                          child: Row (
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Image.asset('resources/status/2.png',height: 15,),
-                                SizedBox(width: 25),
-                                Text("Rischio basso", style: TextStyle(
-                                    fontSize: 12.0
-                                ))
-                              ]),
+                          child: Expanded(
+                            child: Row (
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Expanded(
+                                      child:
+                                      Row(children: [
+                                        Image.asset('resources/status/2.png',height: 15,),
+                                        SizedBox(width: 25),
+                                        Text(status_label[2], style: TextStyle(
+                                            fontSize: 12.0
+                                        )),
+                                      ],)
+                                  ),
+                                ]),
+                          ),
                         ),
                       ]
                     )
