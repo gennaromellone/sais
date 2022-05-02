@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'itemsList.dart';
 import 'main.dart';
 
-//TODO Improve About
 class Team {
   String name;
   String picture;
@@ -53,7 +53,7 @@ class AboutPage extends StatelessWidget {
                             color: Colors.black
                         )
                     ),
-                    Text("https://indirizzosais.it", style: TextStyle(
+                    Text("https://meteo.uniparthenope.it/sais", style: TextStyle(
                         fontSize: 16.0
                     ),
                     ),
@@ -70,7 +70,13 @@ class AboutPage extends StatelessWidget {
                 )
 
             ),
-            Image.asset('resources/logo_mytiluse.png'),
+            Image.asset('resources/saisLogo.png', height: 300,),
+            Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: const Text("Le valutazioni di rischio si riferiscono unicamente alle azioni sulle spiagge delle onde da vento e non possono tenere in conto di altri effetti naturali o antropici quali frane, tsunami, passaggio di natanti. Tantomeno si applicano al rischio per i bagnanti in acqua. ", style: TextStyle(
+                  fontSize: 12.0
+              )),
+            ),
             const Text('Team: ',
                 textAlign: TextAlign.center,
                 style: TextStyle(
@@ -83,6 +89,7 @@ class AboutPage extends StatelessWidget {
             ),
 
             Expanded(
+              flex: 4,
                 child: ListView.builder(
                   itemCount: items.length,
                   itemBuilder: (BuildContext context, int index) {
@@ -102,7 +109,100 @@ class AboutPage extends StatelessWidget {
                   },
 
                 )
-            )
+            ),
+            Expanded(
+              flex: 2,
+              child: Container(
+                  alignment: Alignment.centerLeft,
+                  child:  Column(
+                      children: [
+                        const Text("Codici della previsione inondazione: ", style: TextStyle(
+                            fontSize: 12.0
+                        )),
+
+                        Padding(
+                          padding: const EdgeInsets.all(2.0),
+                          child: Expanded(
+                            child: Row (
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Expanded(
+                                      child:
+                                      Row(children: [
+                                        Image.asset('resources/status/0.png',height: 15,),
+                                        SizedBox(width: 25),
+                                        Text(status_label[0], style: TextStyle(
+                                            fontSize: 12.0
+                                        )),
+                                      ],)
+                                  ),
+                                  Expanded(
+                                      child:
+                                      Row(children: [
+                                        Image.asset('resources/status/3.png',height: 15,),
+                                        SizedBox(width: 25),
+                                        Text(status_label[3], style: TextStyle(
+                                            fontSize: 12.0
+                                        )),
+                                      ],)
+                                  ),
+
+                                ]),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(2.0),
+                          child: Expanded(
+                            child: Row (
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Expanded(
+                                      child:
+                                      Row(children: [
+                                        Image.asset('resources/status/1.png',height: 15,),
+                                        SizedBox(width: 25),
+                                        Text(status_label[1], style: TextStyle(
+                                            fontSize: 12.0
+                                        )),
+                                      ],)
+                                  ),
+                                  Expanded(
+                                      child:
+                                      Row(children: [
+                                        Image.asset('resources/status/4.png',height: 15,),
+                                        SizedBox(width: 25),
+                                        Text(status_label[4], style: TextStyle(
+                                            fontSize: 12.0
+                                        )),
+                                      ],)
+                                  ),
+
+                                ]),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(2.0),
+                          child: Expanded(
+                            child: Row (
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Expanded(
+                                      child:
+                                      Row(children: [
+                                        Image.asset('resources/status/2.png',height: 15,),
+                                        SizedBox(width: 25),
+                                        Text(status_label[2], style: TextStyle(
+                                            fontSize: 12.0
+                                        )),
+                                      ],)
+                                  ),
+                                ]),
+                          ),
+                        ),
+                      ]
+                  )
+              ),
+            ),
           ],
         ),
       ),
